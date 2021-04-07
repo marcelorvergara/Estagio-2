@@ -1,17 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <b-container fluid="sm" >
+          <b-button class="mb-3" @click="pesquisaPartidos">Listar Partidos</b-button>
+        <b-form-group
+            label="Individual inline checkboxes">
+          <b-form-checkbox
+              v-for="partido in $store.getters.getPartidos"
+              v-model="selected"
+              :key="partido.id"
+              :value="partido.id"
+              name="flavour-4a"
+              inline
+          >
+            {{ partido.nome }}
+          </b-form-checkbox>
+        </b-form-group>
+        <b-button @click="lsMembros"> Ver Membros </b-button>
+        <b-table striped hover :items="$store.getters.getPoliticos" v-if="$store.getters.getPoliticos"></b-table>
+      </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      partidos: [],
+      selected: []
+    }
+  },
+  methods:{
+    pesquisaPartidos(){
+      this.$store.dispatch('getPartidos')
+    },
+    lsMembros(){
+      this.$store.dispatch('getMembros', this.selected)
+
+    }
   }
 }
 </script>
