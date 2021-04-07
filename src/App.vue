@@ -15,8 +15,8 @@
             {{ partido.nome }}
           </b-form-checkbox>
         </b-form-group>
-        <b-button @click="lsMembros"> Ver Membros </b-button>
-        <b-table striped hover :items="$store.getters.getPoliticos" v-if="$store.getters.getPoliticos"></b-table>
+        <b-button @click="lsMembros" class="mb-3"> Ver Membros </b-button>
+        <b-table small responsive="sm" striped hover :items="$store.getters.getPoliticos" v-if="$store.getters.getPoliticos"></b-table>
       </b-container>
   </div>
 </template>

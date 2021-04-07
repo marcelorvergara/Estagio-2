@@ -46,7 +46,8 @@ const actions = {
                 .then(function (resp){
 
                     for (let i=0; i< resp.data.dados.length; i++){
-                        context.commit('setPoliticos', {nome: resp.data.dados[i].nome})
+                       console.log( resp.data.dados[i])
+                        context.commit('setPoliticos', {nome: resp.data.dados[i].nome, partido:  resp.data.dados[i].siglaPartido, estado: resp.data.dados[i].siglaUf})
                     }
                 })
         }
